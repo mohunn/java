@@ -1,0 +1,114 @@
+import java.util.Arrays;
+import java.util.Random;
+
+public class RandomManipulation {
+    private double[] Data;
+
+    public RandomManipulation(int size) {
+        Data = new double[size];
+    }
+
+    public void FillArray() {
+        Random rand = new Random();
+        for (int i = 0; i < Data.length; i++) {
+            Data[i] = rand.nextDouble();
+        }
+    }
+
+    public void PrintArray() {
+        for (int i = 0; i < Data.length; i++) {
+            System.out.printf("%.4f ", Data[i]);
+            if ((i + 1) % 10 == 0) {
+                System.out.println();
+            }
+        }
+    }
+
+    public void Max() {
+        double max = Data[0];
+        for (int i = 1; i < Data.length; i++) {
+            if (Data[i] > max) {
+                max = Data[i];
+            }
+        }
+        System.out.println("Max value: " + max);
+    }
+
+    public void Min() {
+        double min = Data[0];
+        for (int i = 1; i < Data.length; i++) {
+            if (Data[i] < min) {
+                min = Data[i];
+            }
+        }
+        System.out.println("Min value: " + min);
+    }
+
+    public double Mean() {
+        double sum = 0;
+        for (int i = 0; i < Data.length; i++) {
+            sum += Data[i];
+        }
+        return sum / Data.length;
+    }
+
+    public void Variance() {
+        double mean = Mean();
+        double sum = 0;
+        for (int i = 0; i < Data.length; i++) {
+            sum += Math.pow(Data[i] - mean, 2);
+        }
+        double variance = sum / Data.length;
+        System.out.println("Variance value: " + variance);
+    }
+
+    public void STD() {
+        double mean = Mean();
+        double sum = 0;
+        for (int i = 0; i < Data.length; i++) {
+            sum += Math.pow(Data[i] - mean, 2);
+        }
+        double variance = sum / Data.length;
+        double std = Math.sqrt(variance);
+        System.out.println("Standard deviation value: " + std);
+    }
+
+    public void FM() {
+        double fm = Mean();
+        System.out.println("First moment test value: " + fm);
+        if (fm >= 0.5) {
+            System.out.println("Data accepted");
+        } else {
+            System.out.println("Data rejected");
+        }
+    }
+
+    public void SM() {
+        double sm = 0;
+        for (int i = 0; i < Data.length; i++) {
+            sm += Math.pow(Data[i], 2);
+        }
+        sm /= Data.length;
+        System.out.println("Second moment test value: " + sm);
+        if (sm >= 0.33) {
+            System.out.println("Data accepted");
+        } else {
+            System.out.println("Data rejected");
+        }
+    }
+
+    public void TM() {
+        double tm = 0;
+        for (int i = 0; i < Data.length; i++) {
+            tm += Math.pow(Data[i], 3);
+        }
+        tm /= Data.length;
+        System.out.println("Third moment test value: " + tm);
+        if (tm >= 0.25) {
+            System.out.println("Data accepted");
+        } else {
+            System.out.println("Data rejected");
+        }
+    }
+
+    public void
